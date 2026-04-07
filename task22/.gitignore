@@ -1,0 +1,18 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# NuGet
+project.assets.json
+*.nuget.cache
+*.nuget.gpg
+*.nuget.lock
+
+# .NET
+*.pdb
+*.cache
