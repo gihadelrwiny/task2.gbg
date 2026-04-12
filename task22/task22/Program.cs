@@ -63,14 +63,12 @@
             Console.WriteLine($"avrage: {avr}");
             Console.WriteLine($"grade: {grade}");
         }
+       
         static void Main(string[] args)
         {
-            int[] arr = ReadValidateScore(); 
-            int avr= CalculateAverage(arr);
-            string s= GetStringGrade(avr);
-            PrintReport(arr, avr, s);
-            
-            
+           
+
+
 
 
 
