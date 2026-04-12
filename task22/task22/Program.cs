@@ -1,76 +1,81 @@
-﻿namespace task22
+﻿using System.Data.SqlTypes;
+
+namespace task22
 {
     internal class Program
     {
-        static int[] ReadValidateScore()
+        static int ReadValidateScore()
         {
-            int[] arr = new int[5];
-            for(int i = 0; i < 5; i++)
+            
+            while (true)
             {
-                int c;
-               
-                if(!int.TryParse(Console.ReadLine(), out c))
+                var input = Console.ReadLine();          
+                if (!int.TryParse(input,out int score) )
                 {
-                    Console.WriteLine("Invalid input");
-                    i--;
+                    Console.WriteLine("invalid input,please write number between 0 and 100");
                     continue;
                 }
-                if (c < 0 || c > 100)
-                {
-                    Console.WriteLine("Invalid input");
-                    i--;
-                    continue;
-                    
-                }
-                arr[i] = c;
+                if (score == -1)
+                    return -1;
+                if (score >= 0 && score<= 100)
+                    return score;
+                Console.WriteLine("Score must be 0-100");
             }
-            return arr;
         }
-        static int CalculateAverage(int[] arr)
+     
+      
+        static string ReadValidateName()
         {
-            int sum = 0;
-            for (int i = 0; i < arr.Length; i++) { 
-                sum+= arr[i];
-            }
-            return sum/arr.Length;
+           
+            while (true)
+            {
+                var name = Console.ReadLine();
+                if (!string.IsNullOrEmpty(name)&&name.All(c=>char.IsLetter(c)||c==' '))
+                {
+                    return name;
+                }
+                Console.WriteLine("invalid input,please write a valid name");
 
-        }
-        static string GetStringGrade(int avr)
-        {
-            switch (avr)
-            {
-                case >=90:
-                    return "A";                
-                case  >= 80:
-                    return "B";                 
-                case >= 70:
-                    return "C";                 
-                case >= 60:
-                    return "D";                
-                default:
-                    return "F";
-                  
             }
         }
-        static void PrintReport(int[] arr, int avr, string grade)
-        {
-            Console.Write("Scores: ");
-            foreach (var item in arr)
-            {
-                Console.Write($"{item} ");
-            }
-            Console.WriteLine();
-            Console.WriteLine($"avrage: {avr}");
-            Console.WriteLine($"grade: {grade}");
-        }
+
         static void Main(string[] args)
         {
-            int[] arr = ReadValidateScore(); 
-            int avr= CalculateAverage(arr);
-            string s= GetStringGrade(avr);
-            PrintReport(arr, avr, s);
-            
-            
+            Student student = new Student();
+            Console.WriteLine("Enter your Name");
+            student.Name =  ReadValidateName();
+            student.Scores = new List<int>();
+            // i use list to store scores because i dont know how many scores user will write
+            //I design when user write (-1) so list ends and loop ends and calculate average and grade
+
+            while (true)
+            {
+                Console.WriteLine("enter score or write -1 to end");
+                int score = ReadValidateScore();
+                if (score==-1)
+                {
+                    break;
+                }
+                student.Scores.Add(score);
+
+            }  
+            Console.WriteLine($"Student Name: {student.Name}");
+            Console.Write("Scores: ");
+            foreach(var item in student.Scores)
+            {
+                if(item == student.Scores.Last())
+                {
+                    Console.Write($"{item}");
+                    continue;
+                }
+                Console.Write($"{item}, ");
+            }
+            Console.WriteLine();
+            Console.WriteLine($"Average: {student.CalculateAverage()}");
+            Console.WriteLine($"Grade: {student.GetGrade()}");
+
+
+
 
 
 
