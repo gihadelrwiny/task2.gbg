@@ -21,10 +21,8 @@ namespace task22
                     return score;
                 Console.WriteLine("Score must be 0-100");
             }
-        }
-     
-      
-        static string ReadValidateName()
+        }     
+       static string ReadValidateName()
         {
            
             while (true)
@@ -41,16 +39,7 @@ namespace task22
         static void PrintReport(Student student)
         {
             Console.WriteLine($"Student Name: {student.Name}");
-            Console.Write("Scores: ");
-            foreach (var item in student.Scores)
-            {
-                if (item == student.Scores.Last())
-                {
-                    Console.Write($"{item}");
-                    continue;
-                }
-                Console.Write($"{item}, ");
-            }
+            Console.Write("Scores: "+string.Join(',',student.Scores));         
             Console.WriteLine();
             Console.WriteLine($"Average: {student.CalculateAverage()}");
             Console.WriteLine($"Grade: {student.GetGrade()}");
@@ -77,11 +66,6 @@ namespace task22
 
             }  
            PrintReport(student);
-
-
-
-
-
 
         }
     }
