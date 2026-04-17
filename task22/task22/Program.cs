@@ -6,29 +6,29 @@ namespace task22
     {
         static int ReadValidateScore()
         {
-            
+
             while (true)
             {
-                var input = Console.ReadLine();          
-                if (!int.TryParse(input,out int score) )
+                var input = Console.ReadLine();
+                if (!int.TryParse(input, out int score))
                 {
                     Console.WriteLine("invalid input,please write number between 0 and 100");
                     continue;
                 }
                 if (score == -1)
                     return -1;
-                if (score >= 0 && score<= 100)
+                if (score >= 0 && score <= 100)
                     return score;
                 Console.WriteLine("Score must be 0-100");
             }
-        }     
-       static string ReadValidateName()
+        }
+        static string ReadValidateName()
         {
-           
+
             while (true)
             {
                 var name = Console.ReadLine();
-                if (!string.IsNullOrEmpty(name)&&name.All(c=>char.IsLetter(c)||c==' '))
+                if (!string.IsNullOrEmpty(name) && name.All(c => char.IsLetter(c) || c == ' '))
                 {
                     return name;
                 }
@@ -39,7 +39,7 @@ namespace task22
         static void PrintReport(Student student)
         {
             Console.WriteLine($"Student Name: {student.Name}");
-            Console.Write("Scores: "+string.Join(',',student.Scores));         
+            Console.Write("Scores: " + string.Join(',', student.Scores));
             Console.WriteLine();
             Console.WriteLine($"Average: {student.CalculateAverage()}");
             Console.WriteLine($"Grade: {student.GetGrade()}");
@@ -49,7 +49,7 @@ namespace task22
         {
             Student student = new Student();
             Console.WriteLine("Enter your Name");
-            student.Name =  ReadValidateName();
+            student.Name = ReadValidateName();
             student.Scores = new List<int>();
             // i use list to store scores because i dont know how many scores user will write
             //I design when user write (-1) so list ends and loop ends and calculate average and grade
@@ -58,14 +58,14 @@ namespace task22
             {
                 Console.WriteLine("enter score or write -1 to end");
                 int score = ReadValidateScore();
-                if (score==-1)
+                if (score == -1)
                 {
                     break;
                 }
                 student.Scores.Add(score);
 
-            }  
-           PrintReport(student);
+            }
+            PrintReport(student);
 
         }
     }
