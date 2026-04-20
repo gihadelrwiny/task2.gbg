@@ -1,73 +1,79 @@
-﻿namespace task22
+﻿using task22.interfaces;
+using task22.models;
+
+namespace task22
 {
     internal class Program
     {
-        static int[] ReadValidateScore()
-        {
-            int[] arr = new int[5];
-            for(int i = 0; i < 5; i++)
-            {
-                int c;
-               
-                if(!int.TryParse(Console.ReadLine(), out c))
-                {
-                    Console.WriteLine("Invalid input");
-                    i--;
-                    continue;
-                }
-                if (c < 0 || c > 100)
-                {
-                    Console.WriteLine("Invalid input");
-                    i--;
-                    continue;
-                    
-                }
-                arr[i] = c;
-            }
-            return arr;
-        }
-        static int CalculateAverage(int[] arr)
-        {
-            int sum = 0;
-            for (int i = 0; i < arr.Length; i++) { 
-                sum+= arr[i];
-            }
-            return sum/arr.Length;
-
-        }
-        static string GetStringGrade(int avr)
-        {
-            switch (avr)
-            {
-                case >=90:
-                    return "A";                
-                case  >= 80:
-                    return "B";                 
-                case >= 70:
-                    return "C";                 
-                case >= 60:
-                    return "D";                
-                default:
-                    return "F";
-                  
-            }
-        }
-        static void PrintReport(int[] arr, int avr, string grade)
-        {
-            Console.Write("Scores: ");
-            foreach (var item in arr)
-            {
-                Console.Write($"{item} ");
-            }
-            Console.WriteLine();
-            Console.WriteLine($"avrage: {avr}");
-            Console.WriteLine($"grade: {grade}");
-        }
        
         static void Main(string[] args)
         {
-           
+            try
+            {
+               Book book1= new Book("The Great Gatsby", 180, 10.99m, 1925);
+                book1.DisplayInfo();
+                Book book2 = new Book("The Great Gatsby", -1, 10.99m, 2010);
+                book2.DisplayInfo();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Validation Error: {ex.Message}");
 
+            }
+            Console.WriteLine("-------------------------");
+            try
+            {
+                Ebook ebook1 = new Ebook("Digital Fortress",  "PDF",5, 3);
+                ebook1.DisplayInfo();
+                Ebook ebook2 = new Ebook("Digital Fortress", "PDF", -1, 3);
+                ebook2.DisplayInfo();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Validation Error: {ex.Message}");
+
+            }
+            Console.WriteLine("-------------------------");
+            try
+            {
+             Magazine magazine1 = new Magazine("National Geographic", 202,  11,"Ahmed");
+                magazine1.DisplayInfo();
+                Magazine magazine2 = new Magazine("National Geographic", 202, 13, "mohamed");
+                magazine2.DisplayInfo();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Validation Error: {ex.Message}");
+
+
+            }
+            Console.WriteLine("#############################################");
+            try
+            {
+                List<IlibraryItem> libraryItems = new List<IlibraryItem>()
+                {
+                    new Magazine("National Geographic", 202, 11, "Ahmed"),
+                    new Book("The Great Gatsby", 180, 10.99m, 1925),
+                    new Ebook("Digital Fortress", "PDF", 5, 3)
+
+                };
+                foreach (var item in libraryItems)
+                {
+                    item.DisplayInfo();
+                    item.BorrowItem();
+                    Console.WriteLine("-------------------------");
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Validation Error: {ex.Message}");
+            }
+                
+
+       
 
 
 
