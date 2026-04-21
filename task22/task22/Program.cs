@@ -1,77 +1,73 @@
-﻿namespace task22
+﻿using System.Globalization;
+using task22.IServices;
+using task22.Models;
+using task22.Services;
+using System.Globalization;
+namespace task22
 {
     internal class Program
     {
-        static int[] ReadValidateScore()
-        {
-            int[] arr = new int[5];
-            for(int i = 0; i < 5; i++)
-            {
-                int c;
-               
-                if(!int.TryParse(Console.ReadLine(), out c))
-                {
-                    Console.WriteLine("Invalid input");
-                    i--;
-                    continue;
-                }
-                if (c < 0 || c > 100)
-                {
-                    Console.WriteLine("Invalid input");
-                    i--;
-                    continue;
-                    
-                }
-                arr[i] = c;
-            }
-            return arr;
-        }
-        static int CalculateAverage(int[] arr)
-        {
-            int sum = 0;
-            for (int i = 0; i < arr.Length; i++) { 
-                sum+= arr[i];
-            }
-            return sum/arr.Length;
 
-        }
-        static string GetStringGrade(int avr)
-        {
-            switch (avr)
-            {
-                case >=90:
-                    return "A";                
-                case  >= 80:
-                    return "B";                 
-                case >= 70:
-                    return "C";                 
-                case >= 60:
-                    return "D";                
-                default:
-                    return "F";
-                  
-            }
-        }
-        static void PrintReport(int[] arr, int avr, string grade)
-        {
-            Console.Write("Scores: ");
-            foreach (var item in arr)
-            {
-                Console.Write($"{item} ");
-            }
-            Console.WriteLine();
-            Console.WriteLine($"avrage: {avr}");
-            Console.WriteLine($"grade: {grade}");
-        }
-       
+
         static void Main(string[] args)
         {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Iisvalidorder validator = new IsValidOrder();
+
+            IcalculateShipping shipping = new StandardCalculateShipping();
+            IDiscount discount = new PercentageDiscount(0.1m);
+
+            IorderProcess process = new OrderProcess(shipping, discount, validator);
+
+            ISaveOrder saveOrder = new SaveOrder();
+            IgenerateInvoid invoice = new GenerateInVoice();
+            IconfirmationEmail email = new ConfirmationEmail();
+
+         
+            Ihandelorder handler = new HandleOrder(process, saveOrder, email, invoice);
+
+
+            Order order1 = new Order
+            {
+                Id = 1,
+                CustomerEmail = "valid@gmail.com",
+                TotalAmount = 1000,
+                ShippingType = ShopingType.Standard
+            };
+
+            Order order2 = new Order
+            {
+                Id = 2,
+                CustomerEmail = "invalid-email",
+                TotalAmount = 1000,
+                ShippingType = ShopingType.Standard
+            };
+
+            Order order3 = new Order
+            {
+                Id = 3,
+                CustomerEmail = "test@gmail.com",
+                TotalAmount = -50,
+                ShippingType = ShopingType.Express
+            };
+
+            Order order4 = new Order
+            {
+                Id = 4,
+                CustomerEmail = "",
+                TotalAmount = 0,
+                ShippingType = ShopingType.Standard
+            };
+
            
-
-
-
-
+            handler.handleorder(order1);
+            handler.handleorder(order2);
+            handler.handleorder(order3);
+            handler.handleorder(order4);
 
         }
+    
     }
 }
