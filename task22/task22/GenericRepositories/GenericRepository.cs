@@ -7,8 +7,8 @@ using task22.Interfaces;
 
 namespace task22.Repositories
 {
-    public class GenericRepository<T> where T : IHasId
-    {
+    public class GenericRepository<T>:IReadableRepository<T> where T : IHasId
+    {   
         private Stack<T> _items = new Stack<T>();
         public void Add(T entity)
         {
@@ -18,6 +18,7 @@ namespace task22.Repositories
         {
             _items.Pop();
         }
+        // out T so i can use it as out only //fruitdelegate=apple
         public T GetById(int id)
         {
           var item=  _items.FirstOrDefault(s => s.Id == id);
@@ -34,5 +35,6 @@ namespace task22.Repositories
             return items;
         }
 
+       
     }
 }
