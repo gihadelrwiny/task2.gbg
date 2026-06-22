@@ -11,7 +11,7 @@ namespace task21.Controllers
     public class books : ControllerBase
     {
 
-        private List<book> bookList = new List<book>
+        private static List<book> bookList = new List<book>
         {
             new book
       {
@@ -48,7 +48,7 @@ namespace task21.Controllers
             }
             return Ok(book);
         }
-        [HttpGet]
+        [HttpGet("by-author")]
         public IActionResult GetByAuthor([FromQuery] string author)
         {
             var books = bookList.Where(s => s.Author.ToLower() == author.ToLower()).ToList();
@@ -80,6 +80,15 @@ namespace task21.Controllers
             return NoContent();
 
         }
+        [HttpGet("available")]
+        public IActionResult GetAvailableBooks()
+        {
+            var availableBooks = bookList
+                .Where(b => b.IsAvailable)
+                .ToList();
 
-}
+            return Ok(availableBooks);
+        }
+
+    }
 }
