@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using task21.Attributes;
 
 namespace task21.DTO
 {
     public class CreateStudentDto
     {
         [Required]
+        [NoSpecialCharacters]
         public string Name { get; set; }
 
         [Required]
