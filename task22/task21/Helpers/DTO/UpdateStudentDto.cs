@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace task21.DTO
+namespace task21.Helpers.DTO
 {
     public class UpdateStudentDto
     {

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using task21.Data;
-using task21.DTO;
+using task21.Helpers.Data;
+using task21.Helpers.DTO;
+using task21.Interfaces.Iservice;
 using task21.Models;
 
 namespace task21.Controllers
@@ -10,76 +11,117 @@ namespace task21.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<Student>> GetAll([FromQuery] string? name, [FromQuery] int? minAge)
+        private readonly IstudentService _studentService;
+        
+        public StudentsController(IstudentService studentservice)
         {
-            var students = StudentData.Students.AsQueryable();
+            _studentService = studentservice;
 
-            if (!string.IsNullOrEmpty(name))
-                students = students.Where(s => s.Name == name);
+        }
+        [HttpGet]
+        public ActionResult<IEnumerable<Student>> GetAll([FromQuery] string? name, [FromQuery] int? minAge, [FromQuery] int page=1, [FromQuery] int pagesize=0)
+        {
+            try
+            {
+                var students = _studentService.GetAll(name, minAge, page, pagesize);
+                return Ok(students);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
-            if (minAge.HasValue)
-                students = students.Where(s => s.Age >= minAge);
 
-            return Ok(students);
         }
         [HttpGet("{id}")]
         public ActionResult<Student> GetById(int id)
         {
-            var student = StudentData.Students.FirstOrDefault(s => s.Id == id);
-            if (student == null)
+            try
             {
-                return NotFound();
+                var student = _studentService.GetById(id);
+                return Ok(student);
             }
-            return Ok(student);
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteStudent(int id)
         {
-            var Student = StudentData.Students.FirstOrDefault(s => s.Id == id);
-            if (Student == null) return NotFound();
-            StudentData.Students.Remove(Student);
-            return NoContent();
+            try
+            {
+                _studentService.DeleteStudent(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
         }
         [HttpPost]
         public IActionResult CreateStudent([FromBody] CreateStudentDto dto)
         {
-            var Student = new Student
-            {
-                Id = StudentData.Students.Any() ? StudentData.Students.Max(s => s.Id) + 1 : 1,
-                Name = dto.Name,
-                Email = dto.Email,
-                Age = dto.Age,
-                Grade = dto.Grade
 
-            };
-            StudentData.Students.Add(Student);
-            return CreatedAtAction(nameof(GetById), new { Id = Student.Id }, Student);
+            try
+            {
+                var student = _studentService.CreateStudent(dto);
+                return CreatedAtAction(nameof(GetById), new { Id = student.Id }, student);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
         }
         [HttpPut("{id}")]
         public IActionResult UpdateStudent(int id, [FromBody] UpdateStudentDto dto)
         {
-            var student = StudentData.Students.FirstOrDefault(s => s.Id == id);
-            if (student == null) return NotFound();
-            if (dto.Name != null)
-                student.Name = dto.Name;
+            try
+            {
+                _studentService.UpdateStudent(id, dto);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
-            if (dto.Email != null)
-                student.Email = dto.Email;
-
-            if (dto.Age.HasValue)
-                student.Age = dto.Age.Value;
-
-            if (dto.Grade.HasValue)
-                student.Grade = dto.Grade.Value;
-            return NoContent();
         }
         [HttpGet("{id}/grade")]
         public IActionResult GetStudentGrade(int id)
         {
-            var student = StudentData.Students.FirstOrDefault(s => s.Id == id);
-            if (student == null) return NotFound();
-            return Ok(new { grade = student.Grade });
+            try
+            {
+                var grade = _studentService.GetStudentGrade(id);
+                return Ok(new { grade = grade });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
 
         }
 

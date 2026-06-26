@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using task21.Attributes;
+using task21.Helpers.Attributes;
 
-namespace task21.DTO
+namespace task21.Helpers.DTO
 {
     public class CreateStudentDto
     {

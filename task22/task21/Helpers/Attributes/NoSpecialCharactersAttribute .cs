@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
-namespace task21.Attributes
+namespace task21.Helpers.Attributes
 {
     public class NoSpecialCharactersAttribute: ValidationAttribute
     {
