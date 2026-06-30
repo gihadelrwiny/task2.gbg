@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
+using task21.EventArguments;
 using task21.Helpers.DTO;
 using task21.Helpers.Exceptions;
+using task21.Interfaces;
 using task21.Interfaces.IRepository;
 using task21.Interfaces.Iservice;
 using task21.Models;
@@ -13,14 +15,17 @@ namespace task21.Services
     {
         private readonly IStudentRepository _studentRepository;
         private readonly PaginationOptions _paginationOptions;
-        private readonly IEmailService _emailService;
+        private readonly IEventBus _eventBus;
         private readonly ILogger<StudentService> _logger;
-        public StudentService(IStudentRepository studentRepository,IOptionsMonitor<PaginationOptions> paginationoption, IEmailService emailService, ILogger<StudentService> logger  )
+        public event EventHandler<StudentRegisteredEventArgs>? StudentRegisteredEvent;
+        public StudentService(IStudentRepository studentRepository,IOptionsMonitor<PaginationOptions> paginationoption, ILogger<StudentService> logger ,
+            EmailNotificationService emailNotificationService, LoggerSubscriber loggerSubscriber, IEventBus eventBus)
         {
             _studentRepository = studentRepository;
-            _paginationOptions = paginationoption.CurrentValue;
-            _emailService = emailService;
+            _paginationOptions = paginationoption.CurrentValue;    
             _logger = logger;
+            _eventBus = eventBus;
+           
         }
         public StudentDto CreateStudent(CreateStudentDto dto)
         {
@@ -28,11 +33,11 @@ namespace task21.Services
             CheckEmailExists(dto.Email);
             // Business Rule 
             ValidateStudent(dto.Age, dto.Grade);
-            var student = _studentRepository.CreateStudent(dto);
-            _logger.LogInformation("Student {id} Created ", student.Id);
-            _emailService.SendEmail(student.Email);
+            var studentdto = _studentRepository.CreateStudent(dto);
+            _logger.LogInformation("Student {id} Created ", studentdto.Id);
 
-            return student;
+            _eventBus.Publish(new StudentRegisteredEventArgs(studentdto));
+            return studentdto;
 
         }
 

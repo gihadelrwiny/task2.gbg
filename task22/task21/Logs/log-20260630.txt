@@ -23,3 +23,121 @@ task21.Helpers.Exceptions.ConflictException: Email already exists.
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2026-06-30 21:18:39.317 +03:00 [INF] Application Starting
+2026-06-30 21:18:39.499 +03:00 [FTL] Application terminated unexpectedly
+System.InvalidOperationException: No public 'Invoke' or 'InvokeAsync' method found for middleware of type 'task21.Helpers.Middlewares.GlobalExceptionHandler'.
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware(IApplicationBuilder app, Type middleware, Object[] args)
+   at task21.Helpers.Middlewares.MiddlewareExtensions.UseGlobalExceptionHandler(IApplicationBuilder app) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Shared\Middlewares\MiddlewareExtensions.cs:line 9
+   at Program.<Main>$(String[] args) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Program.cs:line 53
+2026-06-30 21:19:54.142 +03:00 [INF] Application Starting
+2026-06-30 21:19:54.275 +03:00 [FTL] Application terminated unexpectedly
+System.InvalidOperationException: No public 'Invoke' or 'InvokeAsync' method found for middleware of type 'task21.Helpers.Middlewares.GlobalExceptionHandler'.
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware(IApplicationBuilder app, Type middleware, Object[] args)
+   at task21.Helpers.Middlewares.MiddlewareExtensions.UseGlobalExceptionHandler(IApplicationBuilder app) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Shared\Middlewares\MiddlewareExtensions.cs:line 9
+   at Program.<Main>$(String[] args) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Program.cs:line 53
+2026-06-30 21:22:26.372 +03:00 [INF] Application Starting
+2026-06-30 21:22:27.128 +03:00 [INF] API ready
+2026-06-30 21:22:27.131 +03:00 [INF] Initial student data seeded.
+2026-06-30 21:22:40.123 +03:00 [INF] GET /api/Students → 200 in 162ms
+2026-06-30 21:22:40.131 +03:00 [INF] GET /api/Students → 200 in 174ms
+2026-06-30 21:22:58.961 +03:00 [INF] Student 3 Created 
+2026-06-30 21:22:58.976 +03:00 [INF] POST /api/Students → 201 in 53ms
+2026-06-30 21:22:58.980 +03:00 [INF] POST /api/Students → 201 in 57ms
+2026-06-30 21:23:10.086 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:23:10.090 +03:00 [INF] GET /api/Students → 200 in 7ms
+2026-06-30 21:23:10.564 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:23:10.569 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:23:10.951 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:23:10.956 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:23:11.255 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:23:11.259 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:34:54.835 +03:00 [INF] Application Starting
+2026-06-30 21:34:55.333 +03:00 [INF] API ready
+2026-06-30 21:34:55.337 +03:00 [INF] Initial student data seeded.
+2026-06-30 21:35:02.459 +03:00 [INF] GET /api/Students → 200 in 139ms
+2026-06-30 21:35:02.467 +03:00 [INF] GET /api/Students → 200 in 151ms
+2026-06-30 21:35:05.748 +03:00 [INF] GET /api/Students → 200 in 4ms
+2026-06-30 21:35:05.750 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:06.697 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:06.700 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:07.352 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:35:07.358 +03:00 [INF] GET /api/Students → 200 in 7ms
+2026-06-30 21:35:08.012 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:35:08.016 +03:00 [INF] GET /api/Students → 200 in 4ms
+2026-06-30 21:35:08.606 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:35:08.609 +03:00 [INF] GET /api/Students → 200 in 4ms
+2026-06-30 21:35:09.250 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:09.254 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:35:09.884 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:35:09.890 +03:00 [INF] GET /api/Students → 200 in 9ms
+2026-06-30 21:35:10.549 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:10.554 +03:00 [INF] GET /api/Students → 200 in 7ms
+2026-06-30 21:35:11.205 +03:00 [INF] GET /api/Students → 200 in 4ms
+2026-06-30 21:35:11.207 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:11.795 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:35:11.798 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:12.683 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:35:12.687 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:13.310 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:13.315 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:14.282 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:14.286 +03:00 [INF] GET /api/Students → 200 in 6ms
+2026-06-30 21:35:17.537 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:35:17.540 +03:00 [INF] GET /api/Students → 200 in 7ms
+2026-06-30 21:35:18.119 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:18.122 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:35:18.557 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:35:18.559 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:42:01.278 +03:00 [INF] Application Starting
+2026-06-30 21:42:01.804 +03:00 [INF] API ready
+2026-06-30 21:42:01.806 +03:00 [INF] Initial student data seeded.
+2026-06-30 21:42:08.297 +03:00 [INF] GET /api/Students → 200 in 156ms
+2026-06-30 21:42:14.084 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:42:14.703 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:42:15.345 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:42:15.990 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:42:16.552 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 21:42:17.177 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:42:17.858 +03:00 [INF] GET /api/Students → 200 in 5ms
+2026-06-30 21:42:18.545 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 21:42:19.364 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 21:42:20.030 +03:00 [INF] GET /api/Students → 429 in 0ms
+2026-06-30 22:17:44.510 +03:00 [INF] Application Starting
+2026-06-30 22:17:45.060 +03:00 [INF] API ready
+2026-06-30 22:17:45.062 +03:00 [INF] Initial student data seeded.
+2026-06-30 22:17:52.269 +03:00 [INF] GET /api/Students → 200 in 145ms
+2026-06-30 22:18:07.917 +03:00 [INF] Student 3 Created 
+2026-06-30 22:18:07.920 +03:00 [INF] Email sent to user@example.com
+2026-06-30 22:18:07.922 +03:00 [INF] [FILE LOGGER] Student 3 Registered
+2026-06-30 22:18:07.935 +03:00 [INF] POST /api/Students → 201 in 49ms
+2026-06-30 22:28:28.021 +03:00 [INF] Application Starting
+2026-06-30 22:28:28.172 +03:00 [FTL] Application terminated unexpectedly
+System.InvalidOperationException: Cannot resolve scoped service 'task21.Services.EmailNotificationService' from root provider.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.ValidateResolution(ServiceCallSite callSite, IServiceScope scope, IServiceScope rootScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.OnResolve(ServiceCallSite callSite, IServiceScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Program.<Main>$(String[] args) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Program.cs:line 59
+2026-06-30 22:34:16.978 +03:00 [INF] Application Starting
+2026-06-30 22:34:17.505 +03:00 [INF] API ready
+2026-06-30 22:34:17.508 +03:00 [INF] Initial student data seeded.
+2026-06-30 22:34:25.924 +03:00 [INF] Student 3 Created 
+2026-06-30 22:34:25.931 +03:00 [INF] Email sent to user@example.com
+2026-06-30 22:34:25.933 +03:00 [INF] [FILE LOGGER] Student 3 Registered
+2026-06-30 22:34:25.952 +03:00 [INF] POST /api/Students → 201 in 162ms
+2026-06-30 22:34:40.335 +03:00 [INF] Application Starting
+2026-06-30 22:34:40.870 +03:00 [INF] API ready
+2026-06-30 22:34:40.872 +03:00 [INF] Initial student data seeded.
+2026-06-30 22:34:46.926 +03:00 [INF] GET /api/Students → 200 in 136ms
+2026-06-30 22:34:48.692 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 22:34:49.202 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 22:34:49.596 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 22:34:50.106 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 22:34:50.611 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 22:34:51.120 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 22:34:51.561 +03:00 [INF] GET /api/Students → 200 in 1ms
+2026-06-30 22:34:52.018 +03:00 [INF] GET /api/Students → 200 in 2ms
+2026-06-30 22:34:52.490 +03:00 [INF] GET /api/Students → 200 in 3ms
+2026-06-30 22:34:53.074 +03:00 [INF] GET /api/Students → 429 in 0ms
