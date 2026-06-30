@@ -1,0 +1,25 @@
+2026-06-30 03:49:29.837 +03:00 [INF] Application Starting
+2026-06-30 03:52:55.611 +03:00 [INF] Student 16 Created 
+2026-06-30 03:59:11.188 +03:00 [INF] Application Starting
+2026-06-30 03:59:52.659 +03:00 [ERR] Duplicate email detected: karim@example.com
+task21.Helpers.Exceptions.ConflictException: Email already exists.
+2026-06-30 03:59:57.296 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+task21.Helpers.Exceptions.ConflictException: Email already exists.
+   at task21.Services.StudentService.CheckEmailExists(String email, Nullable`1 excludeId) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Services\StudentService.cs:line 91
+   at task21.Services.StudentService.CreateStudent(CreateStudentDto dto) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Services\StudentService.cs:line 28
+   at task21.Controllers.StudentsController.CreateStudent(CreateStudentDto dto) in C:\Users\zedan\Source\Repos\task2.gbg\task22\task21\Controllers\StudentsController.cs:line 45
+   at lambda_method8(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
