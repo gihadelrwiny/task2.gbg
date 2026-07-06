@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Xml.Linq;
 using task21.DTO;
@@ -33,12 +34,14 @@ namespace task21.Controllers
         };
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetAll()
         {
             return Ok(bookList);
 
         }
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult GetById(int id)
         {
             var book = bookList.FirstOrDefault(b => b.Id == id);
@@ -56,6 +59,7 @@ namespace task21.Controllers
             return Ok(books);
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateBook([FromBody]BookCreatedDto book)
         {
             var bookcreated = new book
@@ -72,6 +76,7 @@ namespace task21.Controllers
 
         }
         [HttpDelete( "{id}")]
+        [Authorize]
         public IActionResult DeleteBookById(int id)
         {
             var book = bookList.FirstOrDefault(s => s.Id == id);
@@ -81,6 +86,7 @@ namespace task21.Controllers
 
         }
         [HttpGet("available")]
+        [AllowAnonymous]
         public IActionResult GetAvailableBooks()
         {
             var availableBooks = bookList
