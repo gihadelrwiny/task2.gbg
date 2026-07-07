@@ -23,7 +23,9 @@ namespace task21.Services
            {
                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                new Claim(ClaimTypes.Name,user.UserName),
-               new Claim(ClaimTypes.Email,user.Email)
+               new Claim(ClaimTypes.Email,user.Email),
+                new Claim("SubscriptionLevel", user.SubscriptionLevel),
+                new Claim("yearsExperience", user.yearsExperience.ToString())
            };
             foreach (var role in roles)
             {

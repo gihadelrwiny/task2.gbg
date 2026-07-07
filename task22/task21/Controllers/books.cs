@@ -34,14 +34,14 @@ namespace task21.Controllers
         };
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles = "User")]
         public IActionResult GetAll()
         {
             return Ok(bookList);
 
         }
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        [Authorize(Roles = "User")]
         public IActionResult GetById(int id)
         {
             var book = bookList.FirstOrDefault(b => b.Id == id);
@@ -52,6 +52,7 @@ namespace task21.Controllers
             return Ok(book);
         }
         [HttpGet("by-author")]
+        [Authorize(Roles = "User")]
         public IActionResult GetByAuthor([FromQuery] string author)
         {
             var books = bookList.Where(s => s.Author.ToLower() == author.ToLower()).ToList();
@@ -59,7 +60,8 @@ namespace task21.Controllers
             return Ok(books);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
+     
         public IActionResult CreateBook([FromBody]BookCreatedDto book)
         {
             var bookcreated = new book
@@ -76,7 +78,8 @@ namespace task21.Controllers
 
         }
         [HttpDelete( "{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "CanDeleteUsers")]
         public IActionResult DeleteBookById(int id)
         {
             var book = bookList.FirstOrDefault(s => s.Id == id);
@@ -86,7 +89,8 @@ namespace task21.Controllers
 
         }
         [HttpGet("available")]
-        [AllowAnonymous]
+        [Authorize(Roles = "User")]
+        [Authorize(Policy = "PremiumFeature")]
         public IActionResult GetAvailableBooks()
         {
             var availableBooks = bookList

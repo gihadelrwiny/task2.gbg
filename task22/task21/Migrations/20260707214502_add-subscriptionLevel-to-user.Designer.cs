@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using task21.context;
 
@@ -11,9 +12,11 @@ using task21.context;
 namespace task21.Migrations
 {
     [DbContext(typeof(FinalJwtContext))]
-    partial class FinalJwtContextModelSnapshot : ModelSnapshot
+    [Migration("20260707214502_add-subscriptionLevel-to-user")]
+    partial class addsubscriptionLeveltouser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,9 +268,6 @@ namespace task21.Migrations
                     b.Property<string>("SubscriptionLevel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("yearsExperience")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });

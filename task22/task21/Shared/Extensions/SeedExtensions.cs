@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using task21.Models;
 
-namespace task21.Extensions
+namespace task21.Shared.Extensions
 {
     public static class SeedExtensions
     {
@@ -12,7 +12,7 @@ namespace task21.Extensions
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
-            string[] roles = { "Admin", "User" };
+            string[] roles = { "Admin", "Manager", "User" };
 
             foreach (var role in roles)
             {

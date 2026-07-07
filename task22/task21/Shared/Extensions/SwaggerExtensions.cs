@@ -1,6 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 
-namespace task21.Extensions
+namespace task21.Shared.Extensions
 {
     public static class SwaggerExtensions
     {

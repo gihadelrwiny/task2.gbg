@@ -9,6 +9,8 @@ namespace task21.Models
 
      public ICollection<RefreshToken> RefreshTokens { get; set; }
             = new List<RefreshToken>();
+        public string SubscriptionLevel { get; set; } = "Basic";
+        public int yearsExperience { get; set; }
 
     }
 }

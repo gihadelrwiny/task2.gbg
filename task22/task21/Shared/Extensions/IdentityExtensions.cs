@@ -2,7 +2,7 @@
 using task21.context;
 using task21.Models;
 
-namespace task21.Extensions
+namespace task21.Shared.Extensions
 {
     public static class IdentityExtensions
     {
