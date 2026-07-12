@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using task21.context;
@@ -52,6 +53,17 @@ builder.Services.AddCors(options =>
     .WithHeaders("Authorization", "Content-Type")
     .AllowCredentials());
 });
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true; 
+}).AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
+
 
 
 var app = builder.Build();
@@ -80,4 +92,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 
+
 app.Run();
+public partial class Program
+{
+}

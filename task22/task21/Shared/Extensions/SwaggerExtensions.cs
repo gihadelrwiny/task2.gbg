@@ -1,26 +1,43 @@
 ﻿using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace task21.Shared.Extensions
 {
     public static class SwaggerExtensions
     {
-        public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
-        {
-            services.AddEndpointsApiExplorer();
-
-            services.AddSwaggerGen(c =>
+          public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
             {
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "Enter: Bearer {your token}"
-                });
+                services.AddEndpointsApiExplorer();
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new OpenApiInfo
+                    {
+                        Title = "My API",
+                        Version = "v1",
+                        Description = "A comprehensive REST API for managing products and orders",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "GBG Academy",
+                            Email = "api@gbg.com"
+                        }
+                    });
+
+                    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                    c.IncludeXmlComments(xmlPath);
+
+                    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "Bearer",
+                        BearerFormat = "JWT",
+                        In = ParameterLocation.Header,
+                        Description = "Enter: Bearer {your token}"
+                    });
+
+                    c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -31,12 +48,13 @@ namespace task21.Shared.Extensions
                                 Id = "Bearer"
                             }
                         },
+
                         Array.Empty<string>()
                     }
                 });
-            });
+                });
 
-            return services;
+                return services;
+            }
         }
     }
-}
