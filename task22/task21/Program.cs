@@ -75,7 +75,8 @@ app.UseRateLimiting();
 
 
 app.UseAuthentication(); 
-app.UseAuthorization(); 
+app.UseAuthorization();
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
